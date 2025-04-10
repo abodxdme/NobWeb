@@ -1,0 +1,1740 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نوب ويب - حلول تقنية متكاملة</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+ <style>
+    /* أنماط التصميم العامة */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Tajawal', sans-serif;
+    overflow-x: hidden;
+    background-color: #0c0822; /* تم تغييره ليطابق لون خلفية الشعار */
+    color: #fff;
+    position: relative;
+}
+
+/* الخلفية البرمجية المتحركة */
+.code-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.15;
+    overflow: hidden;
+}
+
+.code-line {
+    position: absolute;
+    color: rgba(255, 255, 255, 0.7);
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    white-space: nowrap;
+    animation: floatUp 15s linear infinite;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(100vh);
+    }
+    100% {
+        transform: translateY(-100%);
+    }
+}
+
+/* التصميم الرئيسي */
+.main-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: rgba(15, 10, 40, 0.85); /* تم تغييره ليطابق لون الشعار */
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    position: relative;
+    z-index: 1;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(180, 190, 255, 0.1); /* تم تغييره ليطابق الألوان في الشعار */
+}
+
+/* الشريط العلوي */
+header {
+    background: linear-gradient(90deg, #160c38 0%, #090426 100%); /* تم تغييره ليطابق لون الشعار */
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(180, 190, 255, 0.1); /* تم تغييره */
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: #ffffff; /* لون النص الأبيض ليطابق النص في الشعار */
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.logo span {
+    background: linear-gradient(90deg, #9da7ff, #c6c9ff); /* تدرج لوني للجزء الثاني من الشعار */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.logo i {
+    margin-left: 10px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li {
+    margin-right: 25px;
+}
+
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s;
+    position: relative;
+    padding: 5px 0;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 0;
+    height: 2px;
+    background-color: #9da7ff; /* تم تغييره ليطابق ألوان الشعار */
+    transition: width 0.3s;
+}
+
+.nav-links a:hover {
+    color: #9da7ff; /* تم تغييره ليطابق ألوان الشعار */
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+/* الأقسام العامة */
+section {
+    padding: 80px 30px;
+    border-bottom: 1px solid rgba(180, 190, 255, 0.1); /* تم تغييره */
+}
+
+section:last-child {
+    border-bottom: none;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 60px;
+    color: #9da7ff; /* تم تغييره ليطابق ألوان الشعار */
+    font-size: 36px;
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #9da7ff, transparent); /* تم تغييره */
+}
+
+.container {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -15px;
+}
+
+.col-md-4, .col-md-6 {
+    padding: 0 15px;
+}
+
+.col-md-4 {
+    width: 33.333%;
+}
+
+.col-md-6 {
+    width: 50%;
+}
+
+/* بطاقات المؤسسين */
+.founder-card {
+    background: rgba(22, 12, 56, 0.7); /* تم تغييره ليطابق لون الشعار */
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s;
+    height: 100%;
+    border: 1px solid rgba(180, 190, 255, 0.1); /* تم تغييره */
+}
+
+.founder-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+    border-color: rgba(180, 190, 255, 0.3); /* تم تغييره */
+}
+/* تأثيرات انتقالية لتغيير اللغة */
+body {
+    transition: all 0.3s ease;
+}
+
+.fade-transition {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.founder-img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-bottom: 1px solid rgba(180, 190, 255, 0.1); /* تم تغييره */
+}
+
+.founder-info {
+    padding: 25px;
+}
+
+.founder-name {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #9da7ff; /* تم تغييره ليطابق ألوان الشعار */
+}
+
+.founder-title {
+    color: #aaa;
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+.founder-features {
+    list-style: none;
+    margin-bottom: 20px;
+}
+
+.founder-features li {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.feature-icon {
+    color: #9da7ff; /* تم تغييره ليطابق ألوان الشعار */
+    margin-left: 10px;
+    font-size: 18px;
+}
+
+.founder-note {
+    background: rgba(180, 190, 255, 0.1); /* تم تغييره */
+    border-left: 3px solid #9da7ff; /* تم تغييره */
+    padding: 15px;
+    border-radius: 0 5px 5px 0;
+    font-style: italic;
+    position: relative;
+}
+
+.founder-note::before {
+    content: '"';
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    font-size: 50px;
+    color: rgba(180, 190, 255, 0.2); /* تم تغييره */
+    font-family: serif;
+}
+
+/* بطاقات الخدمات */
+.service-card {
+    background: rgba(22, 12, 56, 0.7); /* تم تغييره ليطابق لون الشعار */
+    border-radius: 10px;
+    padding: 30px;
+    text-align: center;
+    transition: all 0.3s;
+    height: 100%;
+    border: 1px solid rgba(180, 190, 255, 0.1); /* تم تغييره */
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    background: rgba(30, 18, 70, 0.7); /* تم تغييره */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    border-color: rgba(180, 190, 255, 0.3); /* تم تغييره */
+}
+
+.service-icon {
+    font-size: 50px;
+    color: #9da7ff; /* تم تغييره ليطابق ألوان الشعار */
+    margin-bottom: 20px;
+}
+
+.service-title {
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+.service-desc {
+    color: #ccc;
+    line-height: 1.6;
+}
+
+/* بطاقات المشاريع */
+.project-card {
+    background: rgba(22, 12, 56, 0.7); /* تم تغييره ليطابق لون الشعار */
+    border-radius: 10px;
+    overflow: hidden;
+    transition: all 0.3s;
+    border: 1px solid rgba(180, 190, 255, 0.1); /* تم تغييره */
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+    border-color: rgba(180, 190, 255, 0.3); /* تم تغييره */
+}
+
+.project-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 1px solid rgba(180, 190, 255, 0.1); /* تم تغييره */
+}
+
+.project-info {
+    padding: 20px;
+}
+
+.project-title {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.project-desc {
+    color: #ccc;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.project-btn {
+    display: inline-block;
+    background: transparent;
+    color: #9da7ff; /* تم تغييره ليطابق ألوان الشعار */
+    padding: 8px 20px;
+    border: 1px solid #9da7ff; /* تم تغييره */
+    border-radius: 30px;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.project-btn:hover {
+    background: rgba(180, 190, 255, 0.1); /* تم تغييره */
+    transform: translateY(-3px);
+}
+
+/* قسم التواصل */
+.contact-form .form-group {
+    margin-bottom: 20px;
+}
+
+.contact-form label {
+    display: block;
+    margin-bottom: 8px;
+    color: #9da7ff; /* تم تغييره ليطابق ألوان الشعار */
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 12px 15px;
+    background: rgba(22, 12, 56, 0.7); /* تم تغييره */
+    border: 1px solid rgba(22, 12, 56, 0.7); /* تم تغييره */
+    border-radius: 5px;
+    color: #fff;
+    font-family: 'Tajawal', sans-serif;
+    transition: all 0.3s;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: #9da7ff; /* تم تغييره */
+    box-shadow: 0 0 10px rgba(22, 12, 56, 0.7); /* تم تغييره */
+}
+
+.contact-form textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.submit-btn {
+    background: linear-gradient(90deg, #9da7ff, #c6c9ff); /* تم تغييره ليطابق ألوان الشعار */
+    color: #0c0822; /* تم تغييره */
+    border: none;
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: 'Tajawal', sans-serif;
+}
+
+.submit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(180, 190, 255, 0.3); /* تم تغييره */
+}
+
+.contact-info {
+    padding-right: 30px;
+}
+
+.contact-details {
+    list-style: none;
+}
+
+.contact-details li {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.contact-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(180, 190, 255, 0.1); /* تم تغييره */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 15px;
+    color: #9da7ff; /* تم تغييره */
+}
+
+.social-links {
+    display: flex;
+    margin-top: 30px;
+}
+
+.social-link {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(180, 190, 255, 0.1); /* تم تغييره */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+    color: #9da7ff; /* تم تغييره */
+    transition: all 0.3s;
+}
+
+.social-link:hover {
+    background: #9da7ff; /* تم تغييره */
+    color: #0c0822; /* تم تغييره */
+    transform: translateY(-5px);
+}
+
+/* الفوتر */
+footer {
+    background: linear-gradient(90deg, #0c0822 0%, #160c38 100%); /* تم تغييره */
+    padding: 40px 0;
+    text-align: center;
+    border-top: 1px solid rgba(180, 190, 255, 0.1); /* تم تغييره */
+}
+
+.footer-logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff; /* تم تغييره ليطابق النص في الشعار */
+    margin-bottom: 20px;
+    display: inline-block;
+}
+
+.footer-logo span {
+    background: linear-gradient(90deg, #9da7ff, #c6c9ff); /* تدرج لوني للجزء الثاني من الشعار */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    margin-bottom: 20px;
+}
+
+.footer-links li {
+    margin: 0 15px;
+}
+
+.footer-links a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-links a:hover {
+    color: #9da7ff; /* تم تغييره */
+}
+
+.copyright {
+    color: #aaa;
+    font-size: 14px;
+}
+
+/* تأثيرات الحركة */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s, transform 0.6s;
+}
+
+.animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* التجاوب */
+@media (max-width: 992px) {
+    .col-md-4, .col-md-6 {
+        width: 50%;
+    }
+    
+    .founder-card, .service-card, .project-card {
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        padding: 0 15px;
+    }
+    
+    .logo {
+        margin-bottom: 15px;
+    }
+    
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .nav-links li {
+        margin: 0 10px 10px;
+    }
+    
+    .col-md-4, .col-md-6 {
+        width: 100%;
+    }
+    
+    section {
+        padding: 60px 15px;
+    }
+    
+    .contact-info {
+        padding-right: 0;
+        margin-top: 40px;
+    }
+}
+ </style>
+</head>
+<body>
+    <!-- الخلفية البرمجية المتحركة -->
+    <!-- استبدل الكود الحالي للخلفية بهذا الكود: -->
+
+<!-- الخلفية المتحركة الجديدة -->
+<div class="animated-background" id="animatedBackground"></div>
+
+<style>
+/* أنماط الخلفية المتحركة الجديدة */
+.animated-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    background: #0c0822; /* لون خلفية مطابق للموقع */
+}
+
+.particle {
+    position: absolute;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #9da7ff, #c6c9ff);
+    opacity: 0.3;
+    box-shadow: 0 0 10px rgba(157, 167, 255, 0.5);
+    animation: float 15s linear infinite;
+}
+
+.glow {
+    position: absolute;
+    background: radial-gradient(circle, rgba(157, 167, 255, 0.2) 0%, rgba(157, 167, 255, 0) 70%);
+    border-radius: 50%;
+    animation: pulse 8s ease-in-out infinite;
+}
+
+.line {
+    position: absolute;
+    background: linear-gradient(90deg, transparent, rgba(157, 167, 255, 0.1), transparent);
+    height: 1px;
+    width: 100%;
+    animation: moveLine 20s linear infinite;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(100vh) translateX(0);
+    }
+    100% {
+        transform: translateY(-100px) translateX(50px);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(0.8);
+        opacity: 0.2;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0.4;
+    }
+}
+
+@keyframes moveLine {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+    }
+    100% {
+        transform: translateY(-100px) rotate(0deg);
+    }
+}
+/* وسائط استعلام إضافية لتحسين التجربة على أجهزة مختلفة */
+@media (max-width: 1200px) {
+    .main-container {
+        margin: 0 15px;
+    }
+}
+
+@media (max-width: 992px) {
+    .col-md-4, .col-md-6 {
+        width: 50%;
+    }
+    
+    .founder-card, .service-card, .project-card {
+        margin-bottom: 30px;
+    }
+    
+    section {
+        padding: 60px 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        padding: 15px;
+    }
+    
+    .logo {
+        margin-bottom: 15px;
+        font-size: 24px;
+    }
+    
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .nav-links li {
+        margin: 0 10px 10px;
+    }
+    
+    .col-md-4, .col-md-6 {
+        width: 100%;
+    }
+    
+    h2 {
+        font-size: 30px;
+        margin-bottom: 40px;
+    }
+    
+    .founder-img {
+        height: 250px;
+    }
+    
+    .contact-info {
+        padding-right: 0;
+        margin-top: 40px;
+    }
+    
+    .social-links {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar {
+        padding: 10px;
+    }
+    
+    .logo {
+        font-size: 22px;
+    }
+    
+    h2 {
+        font-size: 26px;
+    }
+    
+    .founder-card, .service-card, .project-card {
+        margin-bottom: 20px;
+    }
+    
+    .founder-img {
+        height: 200px;
+    }
+    
+    .service-icon {
+        font-size: 40px;
+    }
+    
+    .project-img {
+        height: 150px;
+    }
+    
+    .footer-links {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .footer-links li {
+        margin: 5px 0;
+    }
+}
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.founder-img, .project-img {
+    width: 100%;
+    height: auto;
+    max-height: 300px;
+    object-fit: cover;
+}
+
+/* تحسين حجم الخط ليتناسب مع الشاشات الصغيرة */
+@media (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+    
+    h1 {
+        font-size: 28px;
+    }
+    
+    h2 {
+        font-size: 24px;
+    }
+    
+    h3 {
+        font-size: 20px;
+    }
+    
+    .founder-name {
+        font-size: 20px;
+    }
+    
+    .service-title {
+        font-size: 18px;
+    }
+}
+@media (max-width: 576px) {
+    .contact-form input,
+    .contact-form textarea {
+        padding: 10px 12px;
+    }
+    
+    .submit-btn {
+        width: 100%;
+        padding: 12px;
+    }
+}
+
+@media (max-width: 768px) {
+    .animate-on-scroll {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .nav-links {
+        width: 100%;
+    }
+    
+    .nav-links li {
+        width: 50%;
+        text-align: center;
+        margin: 0 0 10px 0;
+    }
+    
+    .footer-links {
+        flex-wrap: wrap;
+    }
+}
+
+/* تعديلات خاصة باللغة الإنجليزية */
+html[dir="ltr"] .feature-icon {
+    margin-right: 10px;
+    margin-left: 0;
+}
+
+html[dir="ltr"] .contact-icon {
+    margin-right: 15px;
+    margin-left: 0;
+}
+
+html[dir="ltr"] .contact-info {
+    padding-left: 30px;
+    padding-right: 0;
+}
+
+@media (max-width: 768px) {
+    html[dir="ltr"] .contact-info {
+        padding-left: 0;
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar {
+        position: relative;
+    }
+    
+    .nav-links {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .nav-links.active {
+        max-height: 500px;
+    }
+    
+    .nav-links li {
+        width: 100%;
+        margin: 5px 0;
+    }
+    
+    .language-switcher {
+        margin-top: 10px;
+    }
+    
+    /* إضافة زر القائمة المنسدلة للهواتف */
+    .menu-toggle {
+        display: block;
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        font-size: 24px;
+        cursor: pointer;
+    }
+}
+
+
+</style>
+
+<script>
+// إنشاء الخلفية المتحركة الجديدة
+function createAnimatedBackground() {
+    const background = document.getElementById('animatedBackground');
+    
+    // إنشاء الجزيئات المتحركة
+    for (let i = 0; i < 25; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        
+        // حجم عشوائي للجزيئات
+        const size = Math.random() * 5 + 2;
+        particle.style.width = size + 'px';
+        particle.style.height = size + 'px';
+        
+        // موقع عشوائي
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.top = Math.random() * 100 + '%';
+        
+        // سرعة وتأخير عشوائي للحركة
+        particle.style.animationDuration = 15 + Math.random() * 30 + 's';
+        particle.style.animationDelay = Math.random() * 5 + 's';
+        
+        background.appendChild(particle);
+    }
+    
+    // إنشاء تأثيرات التوهج
+    for (let i = 0; i < 5; i++) {
+        const glow = document.createElement('div');
+        glow.className = 'glow';
+        
+        // حجم عشوائي للتوهج
+        const size = Math.random() * 200 + 150;
+        glow.style.width = size + 'px';
+        glow.style.height = size + 'px';
+        
+        // موقع عشوائي
+        glow.style.left = Math.random() * 100 + '%';
+        glow.style.top = Math.random() * 100 + '%';
+        
+        // سرعة وتأخير عشوائي للنبض
+        glow.style.animationDuration = 8 + Math.random() * 10 + 's';
+        glow.style.animationDelay = Math.random() * 5 + 's';
+        
+        background.appendChild(glow);
+    }
+    
+    // إنشاء خطوط متحركة
+    for (let i = 0; i < 10; i++) {
+        const line = document.createElement('div');
+        line.className = 'line';
+        
+        // موقع عشوائي
+        line.style.top = Math.random() * 100 + '%';
+        
+        // سرعة وتأخير عشوائي للحركة
+        line.style.animationDuration = 20 + Math.random() * 20 + 's';
+        line.style.animationDelay = Math.random() * 5 + 's';
+        
+        background.appendChild(line);
+    }
+}
+
+// استبدل دالة createCodeBackground بهذه الدالة في السكريبت الرئيسي
+document.addEventListener('DOMContentLoaded', function() {
+    createAnimatedBackground();
+    setupScrollAnimations();
+    setupSmoothScrolling();
+});
+</script>
+    
+    <!-- الموقع الرئيسي -->
+    <div class="main-container">
+        <!-- شريط التنقل -->
+        <header>
+            <nav class="navbar">
+                <a href="#" class="logo">
+                    <img class="fas fa-code"></i>
+                    نوب ويب
+                </a>
+                <ul class="nav-links">
+                    <li><a href="#about">من نحن</a></li>
+                    <li><a href="#founders">المؤسسين</a></li>
+                    <li><a href="#services">خدماتنا</a></li>
+                    <li><a href="#projects">مشاريعنا</a></li>
+                    <li><a href="#contact">تواصل معنا</a></li>
+                    <li class="language-switcher">
+                        <a href="#" id="languageToggle">
+                            <i class="fas fa-globe"></i>
+                            <span id="currentLang">English</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        
+        <!-- قسم التعريف بالشركة -->
+        <section id="about">
+            <div class="container">
+                <h2 class="animate-on-scroll">من نحن</h2>
+                <div class="row">
+                    <div class="col-md-6 animate-on-scroll">
+                        <img src="488473465_612723441744561_1377510398747694530_n.jpg" alt="شركة نوب ويب" style="width:100%; border-radius:10px; border:1px solid rgba(100, 255, 200, 0.2);">
+                    </div>
+                    <div class="col-md-6 animate-on-scroll" style="transition-delay:0.2s;">
+                        <h3 style="color:#64ffc8; font-size:28px; margin-bottom:20px;">نوب ويب</h3>
+                        <p style="line-height:1.8; margin-bottom:15px;">شركة رائدة في مجال تطوير الويب والتطبيقات الذكية، نقدم حلولاً تقنية مبتكرة تلبي احتياجات العملاء في العصر الرقمي. تأسست عام 2020 بمجموعة من المبرمجين الموهوبين الذين يجمعون بين الخبرة والإبداع.</p>
+                        <div style="background:rgba(100, 255, 200, 0.1); padding:15px; border-radius:5px; border-left:3px solid #64ffc8; margin-bottom:15px;">
+                            <h4 style="color:#64ffc8; margin-bottom:10px;">رؤيتنا:</h4>
+                            <p>أن نكون الخيار الأول للشركات الناشئة والكبيرة في مجال الحلول البرمجية.</p>
+                        </div>
+                        <div style="background:rgba(100, 255, 200, 0.1); padding:15px; border-radius:5px; border-left:3px solid #64ffc8;">
+                            <h4 style="color:#64ffc8; margin-bottom:10px;">قيمنا:</h4>
+                            <ul style="list-style-type:none; columns:2;">
+                                <li><i class="fas fa-check" style="color:#64ffc8; margin-left:5px;"></i> الجودة</li>
+                                <li><i class="fas fa-check" style="color:#64ffc8; margin-left:5px;"></i> الابتكار</li>
+                                <li><i class="fas fa-check" style="color:#64ffc8; margin-left:5px;"></i> الشفافية</li>
+                                <li><i class="fas fa-check" style="color:#64ffc8; margin-left:5px;"></i> العمل الجماعي</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- قسم المؤسسين -->
+        <section id="founders" style="background:rgba(15, 25, 35, 0.9);">
+            <div class="container">
+                <h2 class="animate-on-scroll">فريق المؤسسين</h2>
+                <div class="row">
+                    <!-- المؤسس الأول -->
+                    <div class="col-md-4 animate-on-scroll">
+                        <div class="founder-card">
+                            <img src="WIN_20250410_11_34_23_Pro.png" class="founder-img" alt="أحمد محمد">
+                            <div class="founder-info">
+                                <h3 class="founder-name">عبدالله فراس</h3>
+                                <p class="founder-title">خبير في تطوير الويب وتصميم واجهات المستخدم</p>
+                                <ul class="founder-features">
+                                    <li><i class="fas fa-code feature-icon"></i> 3 سنوات خبرة في البرمجة</li>
+                                    <li><i class="fas fa-lightbulb feature-icon"></i> إبداعي في حل المشكلات</li>
+                                    <li><i class="fas fa-users feature-icon"></i> قيادي ومحفز للفريق</li>
+                                </ul>
+                                <div class="founder-note">
+                                    "البرمجة ليست مجرد كتابة أكواد، بل هي فن حل المشكلات وإبداع حلول تترك أثراً إيجابياً."
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- المؤسس الثاني -->
+                    <div class="col-md-4 animate-on-scroll" style="transition-delay:0.2s;">
+                        <div class="founder-card">
+                            <img src="488827370_28921890744093317_779423851471226080_n.png" class="founder-img" alt="سارة عبدالله">
+                            <div class="founder-info">
+                                <h3 class="founder-name">احمد جبار</h3>
+                                <p class="founder-title">مبرمج مبتكر موهوب يستطيع بقدراته العالية تحليل الاكواد وترتيبها بجودة عالية</p>
+                                <ul class="founder-features">
+                                    <li><i class="fas fa-shield-alt feature-icon"></i> خبير في لغة c++</li>
+                                    <li><i class="fas fa-database feature-icon"></i>برمجة مواقع بجودة جيدة</li>
+                                    <li><i class="fas fa-chart-line feature-icon"></i>مطور العاب</li>
+                                </ul>
+                                <div class="founder-note">
+                                    "التكنولوجيا تتطور بسرعة، وواجبنا كمبرمجين أن نواكب هذا التطور لنقدم الأفضل دائماً."
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- المؤسس الثالث -->
+                    <div class="col-md-4 animate-on-scroll" style="transition-delay:0.4s;">
+                        <div class="founder-card">
+                            <img src="Withnail and I_ 30 years on, it’s the perfect film for Brexit Britain.jpg" class="founder-img" alt="خالد سعيد">
+                            <div class="founder-info">
+                                <h3 class="founder-name">عبد الرحمن احمد</h3>
+                                <p class="founder-title">مطور تطبيقات جوال وتقنيات الذكاء الاصطناعي</p>
+                                <ul class="founder-features">
+                                    <li><i class="fas fa-mobile-alt feature-icon"></i>مسوق جيد</li>
+                                    <li><i class="fas fa-robot feature-icon"></i>مخطط ممتاز </li>
+                                    <li><i class="fas fa-cloud feature-icon"></i>روح قيادية عالية</li>
+                                </ul>
+                                <div class="founder-note">
+                                    "التقاء الإبداع مع التقنية لصناعة نمو مستدام."
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- قسم الخدمات -->
+        <section id="services">
+            <div class="container">
+                <h2 class="animate-on-scroll">خدماتنا</h2>
+                <div class="row">
+                    <!-- الخدمة 1 -->
+                    <div class="col-md-4 animate-on-scroll">
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <i class="fas fa-laptop-code"></i>
+                            </div>
+                            <h3 class="service-title">تطوير مواقع الويب</h3>
+                            <p class="service-desc">
+                                تصميم وتطوير مواقع ويب متكاملة، سريعة، متوافقة مع جميع الأجهزة ومحركات البحث باستخدام أحدث التقنيات.
+                            </p>
+                            <p>
+                                السعر : 20-30 IQD
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- الخدمة 2 -->
+                    <div class="col-md-4 animate-on-scroll" style="transition-delay:0.2s;">
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <i class="fas fa-cogs"></i>
+                            </div>
+                            <h3 class="service-title">بناء موقع احترافي لشركات</h3>
+                            <p class="service-desc">
+                                      تطوير مواقع لشركات بجودة عالية وشكل احترافي تناسب جميع الاجهزة والشاشات
+                            </p>
+                               <P>
+                                السعر : 35-45 IQD
+                                  </P>
+                        </div>
+                    </div>
+                    
+                    <!-- الخدمة 3 -->
+                    <div class="col-md-4 animate-on-scroll" style="transition-delay:0.4s;">
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <i class="fas fa-school"></i>
+                            </div>
+                            <h3 class="service-title">مواقع لمدارس منظمة</h3>
+                            <p class="service-desc">
+                                   بناء موقع باعلى جودة ممكنةوتنظيمم وعمل ابداعي لاجل التعليم
+                            </p>
+                            <P>
+                                السعر: 50-55 IQD
+                            </P>
+                        </div>
+                    </div>
+                    
+                    <!-- الخدمة 4 -->
+                    <div class="col-md-6 animate-on-scroll">
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h3 class="service-title">تحليل البيانات</h3>
+                            <p class="service-desc">
+                                تحليل البيانات واستخراج التقارير والرؤى لمساعدة الشركات على اتخاذ قرارات مدعومة بالبيانات باستخدام الذكاء الاصطناعي.
+                            </p>
+                            <P>
+                                السعر : 10-15 IQD
+                            </P>
+                        </div>
+                    </div>
+                    
+                    <!-- الخدمة 5 -->
+                    <div class="col-md-6 animate-on-scroll" style="transition-delay:0.2s;">
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <i class="fas fa-headset"></i>
+                            </div>
+                            <h3 class="service-title">الدعم الفني</h3>
+                            <p class="service-desc">
+                                خدمات الدعم والصيانة المستمرة لضمان استمرارية عمل أنظمتك بأعلى كفاءة مع تحديثات دورية وتحسينات مستمرة.
+                            </p>
+                            <P>
+                                السعر : 5-10 IQD
+                            </P>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- قسم المشاريع -->
+        <section id="projects" style="background:rgba(15, 25, 35, 0.9);">
+            <div class="container">
+                <h2 class="animate-on-scroll">مشاريعنا</h2>
+                <div class="row">
+                    <!-- المشروع 1 -->
+                    <div class="col-md-4 animate-on-scroll">
+                        <div class="project-card">
+                            <img src="photo_2025-03-23_11-10-06 (2).jpg" class="project-img" alt="نظام إدارة المدارس">
+                            <div class="project-info">
+                                <h4 class="project-title">موقع مدرسة د.اثير</h4>
+                                <p class="project-desc">
+                                    يضم جميف ما يخص عن مدرسة د.اثير بتصميم جذاب وجودة عالية 
+                                </p>
+                                <a href="https://dr-atheerschool.vercel.app/" class="project-btn">عرض التفاصيل</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- المشروع 2 -->
+                    <div class="col-md-4 animate-on-scroll" style="transition-delay:0.2s;">
+                        <div class="project-card">
+                            <img src="photo_2025-03-23_13-05-50.jpg" class="project-img" alt="تطبيق توصيل طعام">
+                            <div class="project-info">
+                                <h4 class="project-title">بروتفايلو احترافي لزبون</h4>
+                                <p class="project-desc">
+                                    بروتفايلو نظيف الواجهة وذو جودة عالية ويمكن تشغليله على جميع الشاشات
+                                </p>
+                                <a href="https://abodxdme.github.io/Abdhula-Firas1-protfilo/" class="project-btn">عرض التفاصيل</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- المشروع 3 -->
+                    <div class="col-md-4 animate-on-scroll" style="transition-delay:0.4s;">
+                        <div class="project-card">
+                            <img src="برو كود ايموجي.png" class="project-img" alt="منصة تعليمية">
+                            <div class="project-info">
+                                <h4 class="project-title">موقع لشركة برو كود</h4>
+                                <p class="project-desc">
+                                   موقع احترافي يضم جميع ما يخص شركة برو كود بتصميم جذاب وجودة عالية.
+                                </p>
+                                <a href="https://abodxdme.github.io/-Pro-Code/" class="project-btn">عرض التفاصيل</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- قسم التواصل -->
+        <section id="contact">
+            <div class="container">
+                <h2 class="animate-on-scroll">تواصل معنا</h2>
+                <div class="row animate-on-scroll">
+                    <div class="col-md-6">
+                        <form class="contact-form">
+                            <div class="form-group">
+                                <label for="name">الاسم الكامل</label>
+                                <input type="text" id="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">البريد الإلكتروني</label>
+                                <input type="email" id="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">الموضوع</label>
+                                <input type="text" id="subject" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">الرسالة</label>
+                                <textarea id="message" required></textarea>
+                            </div>
+                            <button type="submit" class="submit-btn">إرسال الرسالة</button>
+                        </form>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="contact-info">
+                            <h3 style="color:#64ffc8; margin-bottom:30px;">معلومات التواصل</h3>
+                            <ul class="contact-details">
+                                <li>
+                                    <div class="contact-icon">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                    </div>
+                                    <span>بغداد العراق</span>
+                                </li>
+                                <li>
+                                    <div class="contact-icon">
+                                        <i class="fas fa-envelope"></i>
+                                    </div>
+                                    <span>nobweb2@gmail.com</span>
+                                </li>
+                            </ul>
+                            <div class="social-links">
+                                
+                                
+                                <a href="https://www.instagram.com/nobweb2/" class="social-link"><i class="fab fa-instagram"></i></a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- الفوتر -->
+        <footer>
+            <div class="container">
+                <a href="#" class="footer-logo">
+                    <i class="fas fa-code"></i> نوب ويب
+                </a>
+                <ul class="footer-links">
+                    <li><a href="#about">من نحن</a></li>
+                    <li><a href="#services">خدماتنا</a></li>
+                    <li><a href="#projects">مشاريعنا</a></li>
+                    <li><a href="#contact">تواصل معنا</a></li>
+                    <li><a href="#">سياسة الخصوصية</a></li>
+                </ul>
+                <p class="copyright">
+                    &copy; 2025 نوب ويب. جميع الحقوق محفوظة.
+                </p>
+            </div>
+        </footer>
+    </div>
+    
+    <!-- سكربتات الجافاسكربت -->
+    <script>
+        // إنشاء الخلفية البرمجية المتحركة
+        function createCodeBackground() {
+            const codeBg = document.getElementById('codeBackground');
+            const codeLines = [
+                "function welcomeToNobWeb() {",
+                "  // نقدم حلولاً برمجية مبتكرة",
+                "  const solutions = ['Web', 'Mobile', 'eCommerce'];",
+                "  return 'مرحباً بكم في نوب ويب';",
+                "}",
+                "class NobWeb {",
+                "  constructor() {",
+                "    this.quality = 'عالية';",
+                "    this.innovation = true;",
+                "  }",
+                "  developProject() {",
+                "    // نطور مشاريع تقنية متكاملة",
+                "    return 'مشروع ناجح';",
+                "  }",
+                "}",
+                "// تقنيات نستخدمها",
+                "const technologies = [",
+                "  'HTML5', 'CSS3', 'JavaScript',",
+                "  'React', 'Vue', 'Angular',",
+                "  'Node.js', 'Python', 'PHP',",
+                "  'MySQL', 'MongoDB', 'AI'",
+                "];",
+                "// فريقنا المتميز",
+                "const team = {",
+                "  developers: 15,",
+                "  designers: 5,",
+                "  managers: 3",
+                "};"
+            ];
+            
+            for (let i = 0; i < 20; i++) {
+                const line = document.createElement('div');
+                line.className = 'code-line';
+                line.textContent = codeLines[Math.floor(Math.random() * codeLines.length)];
+                line.style.left = Math.random() * 100 + '%';
+                line.style.animationDelay = Math.random() * 15 + 's';
+                line.style.animationDuration = 10 + Math.random() * 20 + 's';
+                codeBg.appendChild(line);
+            }
+        }
+        
+        // تأثير الظهور عند التمرير
+        function setupScrollAnimations() {
+            const animateElements = document.querySelectorAll('.animate-on-scroll');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            animateElements.forEach(element => {
+                observer.observe(element);
+            });
+        }
+        
+        // تنعيم التمرير للروابط الداخلية
+        function setupSmoothScrolling() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        }
+        
+        // تهيئة الصفحة عند التحميل
+        document.addEventListener('DOMContentLoaded', function() {
+            createCodeBackground();
+            setupScrollAnimations();
+            setupSmoothScrolling();
+        });
+    </script>
+    <!-- إضافة أنماط CSS لزر تبديل اللغة -->
+<style>
+    .language-switcher {
+        position: relative;
+    }
+    
+    .language-switcher a {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+    
+    .language-indicator {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: #9da7ff;
+        margin-right: 5px;
+    }
+</style>
+
+<!-- كود جافاسكريبت للتبديل بين اللغات -->
+<script>
+    // كائنات الترجمة
+    const translations = {
+        ar: {
+            // الترجمة للقائمة الرئيسية
+            "navAbout": "من نحن",
+            "navFounders": "المؤسسين",
+            "navServices": "خدماتنا",
+            "navProjects": "مشاريعنا",
+            "navContact": "تواصل معنا",
+            
+            // ترجمة عناوين الأقسام
+            "sectionAbout": "من نحن",
+            "sectionFounders": "فريق المؤسسين",
+            "sectionServices": "خدماتنا",
+            "sectionProjects": "مشاريعنا",
+            "sectionContact": "تواصل معنا",
+            
+            // قسم من نحن
+            "aboutTitle": "نوب ويب",
+            "aboutDesc": "شركة رائدة في مجال تطوير الويب والتطبيقات الذكية، نقدم حلولاً تقنية مبتكرة تلبي احتياجات العملاء في العصر الرقمي. تأسست عام 2020 بمجموعة من المبرمجين الموهوبين الذين يجمعون بين الخبرة والإبداع.",
+            "visionTitle": "رؤيتنا:",
+            "visionDesc": "أن نكون الخيار الأول للشركات الناشئة والكبيرة في مجال الحلول البرمجية.",
+            "valuesTitle": "قيمنا:",
+            "valueQuality": "الجودة",
+            "valueInnovation": "الابتكار",
+            "valueTransparency": "الشفافية",
+            "valueTeamwork": "العمل الجماعي",
+            
+            // قسم المؤسسين
+            "founder1Name": "عبدالله فراس",
+            "founder1Title": "خبير في تطوير الويب وتصميم واجهات المستخدم",
+            "founder1Quote": "البرمجة ليست مجرد كتابة أكواد، بل هي فن حل المشكلات وإبداع حلول تترك أثراً إيجابياً.",
+            
+            "founder2Name": "احمد جبار",
+            "founder2Title": "مبرمج مبتكر موهوب يستطيع بقدراته العالية تحليل الاكواد وترتيبها بجودة عالية",
+            "founder2Quote": "التكنولوجيا تتطور بسرعة، وواجبنا كمبرمجين أن نواكب هذا التطور لنقدم الأفضل دائماً.",
+            
+            "founder3Name": "عبد الرحمن احمد",
+            "founder3Title": "مطور تطبيقات جوال وتقنيات الذكاء الاصطناعي",
+            "founder3Quote": "التقاء الإبداع مع التقنية لصناعة نمو مستدام.",
+            
+            // قسم الخدمات
+            "service1Title": "تطوير مواقع الويب",
+            "service1Desc": "تصميم وتطوير مواقع ويب متكاملة، سريعة، متوافقة مع جميع الأجهزة ومحركات البحث باستخدام أحدث التقنيات.",
+            "service1Price": "السعر : 20-30 IQD",
+            
+            "service2Title": "بناء موقع احترافي لشركات",
+            "service2Desc": "تطوير مواقع لشركات بجودة عالية وشكل احترافي تناسب جميع الاجهزة والشاشات",
+            "service2Price": "السعر : 35-45 IQD",
+            
+            "service3Title": "مواقع لمدارس منظمة",
+            "service3Desc": "بناء موقع باعلى جودة ممكنةوتنظيمم وعمل ابداعي لاجل التعليم",
+            "service3Price": "السعر: 50-55 IQD",
+            
+            "service4Title": "تحليل البيانات",
+            "service4Desc": "تحليل البيانات واستخراج التقارير والرؤى لمساعدة الشركات على اتخاذ قرارات مدعومة بالبيانات باستخدام الذكاء الاصطناعي.",
+            "service4Price": "السعر : 10-15 IQD",
+            
+            "service5Title": "الدعم الفني",
+            "service5Desc": "خدمات الدعم والصيانة المستمرة لضمان استمرارية عمل أنظمتك بأعلى كفاءة مع تحديثات دورية وتحسينات مستمرة.",
+            "service5Price": "السعر : 5-10 IQD",
+            
+            // نموذج التواصل
+            "contactName": "الاسم الكامل",
+            "contactEmail": "البريد الإلكتروني",
+            "contactSubject": "الموضوع",
+            "contactMessage": "الرسالة",
+            "contactSend": "إرسال الرسالة",
+            "contactInfoTitle": "معلومات التواصل",
+            "contactAddress": "بغداد العراق",
+            
+            // تذييل الصفحة
+            "footerRights": "جميع الحقوق محفوظة.",
+            "footerPrivacy": "سياسة الخصوصية",
+            
+            // زر تبديل اللغة
+            "switchLanguage": "English"
+        },
+        en: {
+            // Navigation Menu
+            "navAbout": "About Us",
+            "navFounders": "Founders",
+            "navServices": "Services",
+            "navProjects": "Projects",
+            "navContact": "Contact Us",
+            
+            // Section Headers
+            "sectionAbout": "About Us",
+            "sectionFounders": "Founding Team",
+            "sectionServices": "Our Services",
+            "sectionProjects": "Our Projects",
+            "sectionContact": "Contact Us",
+            
+            // About Section
+            "aboutTitle": "Nob Web",
+            "aboutDesc": "A leading company in web development and smart applications, providing innovative technical solutions that meet customer needs in the digital age. Founded in 2020 with a group of talented programmers who combine experience and creativity.",
+            "visionTitle": "Our Vision:",
+            "visionDesc": "To be the first choice for startups and large companies in software solutions.",
+            "valuesTitle": "Our Values:",
+            "valueQuality": "Quality",
+            "valueInnovation": "Innovation",
+            "valueTransparency": "Transparency",
+            "valueTeamwork": "Teamwork",
+            
+            // Founders Section
+            "founder1Name": "Abdullah Firas",
+            "founder1Title": "Expert in Web Development and UI Design",
+            "founder1Quote": "Programming is not just about writing code, but it's the art of problem-solving and creating solutions that make a positive impact.",
+            
+            "founder2Name": "Ahmad Jabbar",
+            "founder2Title": "Innovative programmer with high capabilities in code analysis and organization",
+            "founder2Quote": "Technology evolves quickly, and our duty as programmers is to keep up with this development to always deliver the best.",
+            
+            "founder3Name": "Abdul Rahman Ahmad",
+            "founder3Title": "Mobile App Developer and AI Technologies",
+            "founder3Quote": "The meeting of creativity with technology to create sustainable growth.",
+            
+            // Services Section
+            "service1Title": "Web Development",
+            "service1Desc": "Design and development of integrated websites, fast, compatible with all devices and search engines using the latest technologies.",
+            "service1Price": "Price: 20-30 IQD",
+            
+            "service2Title": "Professional Company Websites",
+            "service2Desc": "Development of high-quality professional websites for companies that are suitable for all devices and screens",
+            "service2Price": "Price: 35-45 IQD",
+            
+            "service3Title": "Organized School Websites",
+            "service3Desc": "Building websites with the highest possible quality, organization, and creative work for education",
+            "service3Price": "Price: 50-55 IQD",
+            
+            "service4Title": "Data Analysis",
+            "service4Desc": "Data analysis and report extraction to help companies make data-driven decisions using artificial intelligence.",
+            "service4Price": "Price: 10-15 IQD",
+            
+            "service5Title": "Technical Support",
+            "service5Desc": "Continuous support and maintenance services to ensure the continuity of your systems with the highest efficiency with periodic updates and continuous improvements.",
+            "service5Price": "Price: 5-10 IQD",
+            
+            // Contact Form
+            "contactName": "Full Name",
+            "contactEmail": "Email",
+            "contactSubject": "Subject",
+            "contactMessage": "Message",
+            "contactSend": "Send Message",
+            "contactInfoTitle": "Contact Information",
+            "contactAddress": "Baghdad, Iraq",
+            
+            // Footer
+            "footerRights": "All Rights Reserved.",
+            "footerPrivacy": "Privacy Policy",
+            
+            // Language Switch Button
+            "switchLanguage": "العربية"
+        }
+    };
+
+    // تحديد اللغة الافتراضية (العربية)
+    let currentLanguage = 'ar';
+    
+    // الحصول على زر تبديل اللغة
+    const languageToggle = document.getElementById('languageToggle');
+    const currentLangElement = document.getElementById('currentLang');
+    
+    // تنفيذ التبديل عند النقر على الزر
+    languageToggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        // تبديل اللغة
+        currentLanguage = currentLanguage === 'ar' ? 'en' : 'ar';
+        
+        // تغيير اتجاه الصفحة حسب اللغة
+        document.documentElement.setAttribute('dir', currentLanguage === 'ar' ? 'rtl' : 'ltr');
+        document.documentElement.setAttribute('lang', currentLanguage);
+        
+        // تحديث النص على زر تبديل اللغة
+        currentLangElement.textContent = translations[currentLanguage].switchLanguage;
+        
+        // تطبيق الترجمات على العناصر
+        applyTranslations();
+    });
+
+    // وظيفة تطبيق الترجمات على جميع العناصر
+    function applyTranslations() {
+        // ترجمة القائمة الرئيسية
+        document.querySelector('a[href="#about"]').textContent = translations[currentLanguage].navAbout;
+        document.querySelector('a[href="#founders"]').textContent = translations[currentLanguage].navFounders;
+        document.querySelector('a[href="#services"]').textContent = translations[currentLanguage].navServices;
+        document.querySelector('a[href="#projects"]').textContent = translations[currentLanguage].navProjects;
+        document.querySelector('a[href="#contact"]').textContent = translations[currentLanguage].navContact;
+        
+        // ترجمة عناوين الأقسام
+        document.querySelector('#about h2').textContent = translations[currentLanguage].sectionAbout;
+        document.querySelector('#founders h2').textContent = translations[currentLanguage].sectionFounders;
+        document.querySelector('#services h2').textContent = translations[currentLanguage].sectionServices;
+        document.querySelector('#projects h2').textContent = translations[currentLanguage].sectionProjects;
+        document.querySelector('#contact h2').textContent = translations[currentLanguage].sectionContact;
+        
+        // ترجمة قسم "من نحن"
+        document.querySelector('#about h3').textContent = translations[currentLanguage].aboutTitle;
+        document.querySelector('#about p').textContent = translations[currentLanguage].aboutDesc;
+        document.querySelector('#about h4:first-of-type').textContent = translations[currentLanguage].visionTitle;
+        document.querySelector('#about div:nth-of-type(1) p').textContent = translations[currentLanguage].visionDesc;
+        document.querySelector('#about h4:last-of-type').textContent = translations[currentLanguage].valuesTitle;
+        
+        // ترجمة القيم
+        const valueItems = document.querySelectorAll('#about ul li');
+        valueItems[0].innerHTML = `<i class="fas fa-check" style="color:#64ffc8; margin-left:5px;"></i> ${translations[currentLanguage].valueQuality}`;
+        valueItems[1].innerHTML = `<i class="fas fa-check" style="color:#64ffc8; margin-left:5px;"></i> ${translations[currentLanguage].valueInnovation}`;
+        valueItems[2].innerHTML = `<i class="fas fa-check" style="color:#64ffc8; margin-left:5px;"></i> ${translations[currentLanguage].valueTransparency}`;
+        valueItems[3].innerHTML = `<i class="fas fa-check" style="color:#64ffc8; margin-left:5px;"></i> ${translations[currentLanguage].valueTeamwork}`;
+        
+        // ترجمة قسم المؤسسين
+        const founderCards = document.querySelectorAll('.founder-card');
+        
+        // المؤسس الأول
+        founderCards[0].querySelector('.founder-name').textContent = translations[currentLanguage].founder1Name;
+        founderCards[0].querySelector('.founder-title').textContent = translations[currentLanguage].founder1Title;
+        founderCards[0].querySelector('.founder-note').textContent = translations[currentLanguage].founder1Quote;
+        
+        // المؤسس الثاني
+        founderCards[1].querySelector('.founder-name').textContent = translations[currentLanguage].founder2Name;
+        founderCards[1].querySelector('.founder-title').textContent = translations[currentLanguage].founder2Title;
+        founderCards[1].querySelector('.founder-note').textContent = translations[currentLanguage].founder2Quote;
+        
+        // المؤسس الثالث
+        founderCards[2].querySelector('.founder-name').textContent = translations[currentLanguage].founder3Name;
+        founderCards[2].querySelector('.founder-title').textContent = translations[currentLanguage].founder3Title;
+        founderCards[2].querySelector('.founder-note').textContent = translations[currentLanguage].founder3Quote;
+        
+        // ترجمة قسم الخدمات
+        const serviceCards = document.querySelectorAll('.service-card');
+        
+        // الخدمة 1
+        serviceCards[0].querySelector('.service-title').textContent = translations[currentLanguage].service1Title;
+        serviceCards[0].querySelector('.service-desc').textContent = translations[currentLanguage].service1Desc;
+        serviceCards[0].querySelector('p:last-child').textContent = translations[currentLanguage].service1Price;
+        
+        // الخدمة 2
+        serviceCards[1].querySelector('.service-title').textContent = translations[currentLanguage].service2Title;
+        serviceCards[1].querySelector('.service-desc').textContent = translations[currentLanguage].service2Desc;
+        serviceCards[1].querySelector('p:last-child').textContent = translations[currentLanguage].service2Price;
+        
+        // الخدمة 3
+        serviceCards[2].querySelector('.service-title').textContent = translations[currentLanguage].service3Title;
+        serviceCards[2].querySelector('.service-desc').textContent = translations[currentLanguage].service3Desc;
+        serviceCards[2].querySelector('p:last-child').textContent = translations[currentLanguage].service3Price;
+        
+        // الخدمة 4
+        serviceCards[3].querySelector('.service-title').textContent = translations[currentLanguage].service4Title;
+        serviceCards[3].querySelector('.service-desc').textContent = translations[currentLanguage].service4Desc;
+        serviceCards[3].querySelector('p:last-child').textContent = translations[currentLanguage].service4Price;
+        
+        // الخدمة 5
+        serviceCards[4].querySelector('.service-title').textContent = translations[currentLanguage].service5Title;
+        serviceCards[4].querySelector('.service-desc').textContent = translations[currentLanguage].service5Desc;
+        serviceCards[4].querySelector('p:last-child').textContent = translations[currentLanguage].service5Price;
+        
+        // ترجمة نموذج التواصل
+        document.querySelector('label[for="name"]').textContent = translations[currentLanguage].contactName;
+        document.querySelector('label[for="email"]').textContent = translations[currentLanguage].contactEmail;
+        document.querySelector('label[for="subject"]').textContent = translations[currentLanguage].contactSubject;
+        document.querySelector('label[for="message"]').textContent = translations[currentLanguage].contactMessage;
+        document.querySelector('.submit-btn').textContent = translations[currentLanguage].contactSend;
+        
+        // ترجمة معلومات التواصل
+        document.querySelector('.contact-info h3').textContent = translations[currentLanguage].contactInfoTitle;
+        document.querySelector('.contact-details li:first-child span').textContent = translations[currentLanguage].contactAddress;
+        
+        // ترجمة روابط تذييل الصفحة
+        const footerLinks = document.querySelectorAll('.footer-links a');
+        footerLinks[0].textContent = translations[currentLanguage].navAbout;
+        footerLinks[1].textContent = translations[currentLanguage].navServices;
+        footerLinks[2].textContent = translations[currentLanguage].navProjects;
+        footerLinks[3].textContent = translations[currentLanguage].navContact;
+        footerLinks[4].textContent = translations[currentLanguage].footerPrivacy;
+        
+        // ترجمة حقوق النشر
+        document.querySelector('.copyright').innerHTML = `&copy; 2025 ${currentLanguage === 'ar' ? 'نوب ويب' : 'Nob Web'}. ${translations[currentLanguage].footerRights}`;
+        
+        // تعديل أنماط CSS حسب اللغة
+        if (currentLanguage === 'en') {
+            // تعديلات خاصة بالإنجليزية (من اليسار لليمين)
+            document.querySelector('.feature-icon').style.marginLeft = '0';
+            document.querySelector('.feature-icon').style.marginRight = '10px';
+            document.querySelectorAll('.fas.fa-check').forEach(el => {
+                el.style.marginLeft = '0';
+                el.style.marginRight = '5px';
+            });
+            document.querySelector('.contact-info').style.paddingRight = '0';
+            document.querySelector('.contact-info').style.paddingLeft = '30px';
+            document.querySelector('.contact-icon').style.marginLeft = '0';
+            document.querySelector('.contact-icon').style.marginRight = '15px';
+        } else {
+            // تعديلات خاصة بالعربية (من اليمين لليسار)
+            document.querySelector('.feature-icon').style.marginRight = '0';
+            document.querySelector('.feature-icon').style.marginLeft = '10px';
+            document.querySelectorAll('.fas.fa-check').forEach(el => {
+                el.style.marginRight = '0';
+                el.style.marginLeft = '5px';
+            });
+            document.querySelector('.contact-info').style.paddingLeft = '0';
+            document.querySelector('.contact-info').style.paddingRight = '30px';
+            document.querySelector('.contact-icon').style.marginRight = '0';
+            document.querySelector('.contact-icon').style.marginLeft = '15px';
+        }
+    }
+    
+</script>
+<script>
+    // إنشاء زر القائمة المنسدلة للهواتف
+function setupMobileMenu() {
+    const navbar = document.querySelector('.navbar');
+    const navLinks = document.querySelector('.nav-links');
+    
+    // إنشاء زر القائمة فقط إذا كانت الشاشة صغيرة
+    if (window.innerWidth <= 576px) {
+        const menuToggle = document.createElement('div');
+        menuToggle.className = 'menu-toggle';
+        menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+        navbar.insertBefore(menuToggle, navLinks);
+        
+        menuToggle.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+            this.querySelector('i').classList.toggle('fa-bars');
+            this.querySelector('i').classList.toggle('fa-times');
+        });
+    }
+}
+
+// استدعاء الدالة عند التحميل وعند تغيير حجم النافذة
+window.addEventListener('load', setupMobileMenu);
+window.addEventListener('resize', setupMobileMenu);
+</script>
+</body>
+</html>
